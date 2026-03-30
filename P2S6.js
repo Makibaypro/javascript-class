@@ -1,43 +1,37 @@
 
-//Exo3
-
-function simulerFetch(id){
-    return new Promise((resolve, reject) => {
-        if (id === 1 ){
-            resolve ({ id: 1, nom: "Écouteurs BT", prix: 12, vendeurFiable: false });
-        } else {
-            reject(new Error("Produit introuvable : id " + id))
-        }
-    })
-}
-
-async function analyserProduitDistant(id){
-    try {
-        const resultFetch = await simulerFetch(id);
-        let score = 100;
-        let verdict = '';
-        if(resultFetch !== null) {
-
-            if(resultFetch.prix < 15)               score -= 30;
-            if(resultFetch.vendeurFiable === false) score -= 40;
-
-            if(score >= 80)         verdict = 'Fiable';
-            else if(score >= 50)    verdict = 'Moyen';
-            else                    verdict = 'Risque'
-            return {nom : resultFetch.nom, score, verdict}
-        }
-
+//Exo1
+function parseurJSON(string){
+    try{
+        const parsed = JSON.parse(string);
+        return parsed;
 
     } catch (error){
-        return {erreur : error.message};
+        console.log('Erreur :', error.message);
+        return null
     }
 }
 
-async function main(){
-    const result1 = await analyserProduitDistant(1);
-    const result2 = await analyserProduitDistant(99);
-    console.log(result1);
-    console.log(result2);
+console.log(parseurJSON('{"nom":"Clavier","prix":25}'));
+console.log(parseurJSON("ceci n'est pas du JSON"));
+
+//Exo2
+function validerProduit(produit){
+    try {
+        if(produit == null ){
+            throw new Error("Le produit n'existe pas.");
+        } else if (produit.prix === undefined || typeof produit.prix !== 'number' ){
+            throw new Error("Le produit n'a pas de prix.");
+        } else if (produit.nom === undefined || produit.nom === ''){
+            throw new Error("Le produit n'a pas de nom");
+        } else {
+            return true;
+        }
+    } catch (error){
+        console.log('Erreur:', error.message);
+        return null
+    }
 }
 
-main();
+console.log(validerProduit(null));
+console.log(validerProduit({"nom":"Clavier","prix":25}));
+console.log(validerProduit({"nom":"Clavier"}));

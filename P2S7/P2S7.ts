@@ -44,5 +44,3 @@ function evaluerProduit(produit: Produit): Verdict{
 
 console.log(evaluerProduit(produit1));
 console.log(evaluerProduit(produit2));
-
-//Exo3

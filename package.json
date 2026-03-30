@@ -1,15 +1,14 @@
 {
-  "name": "javascript_class",
+  "name": "productengineerlearning",
   "version": "1.0.0",
   "description": "",
-  "main": "hello.js",
+  "main": "P1S1.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "devDependencies": {
     "typescript": "^5.9.3"
   }
